@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import reactLogo from './assets/react.svg';
+import Axios from 'axios';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [reviews, setReviews] = useState(0);
 
-  return <div className="App">Hello</div>;
+  useEffect(() => {
+    Axios.get('http://localhost:8080/api/get').then((response) => {
+      setReviews(response.data);
+    });
+  }, []);
+
+  return (
+    <div className="App">
+      s
+      {/* {reviews.map((item) => (
+        <div>item.name</div>
+      ))} */}
+    </div>
+  );
 }
 
 export default App;
